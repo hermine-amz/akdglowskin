@@ -9,9 +9,11 @@ revealEls.forEach(el=>io.observe(el));
 const navToggle = document.getElementById('navToggle');
 const mobileMenu = document.getElementById('mobileMenu');
 const mobileClose = document.getElementById('mobileClose');
-navToggle.addEventListener('click', ()=> mobileMenu.classList.add('open'));
-mobileClose.addEventListener('click', ()=> mobileMenu.classList.remove('open'));
-mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>mobileMenu.classList.remove('open')));
+if (navToggle && mobileMenu && mobileClose) {
+  navToggle.addEventListener('click', ()=> mobileMenu.classList.add('open'));
+  mobileClose.addEventListener('click', ()=> mobileMenu.classList.remove('open'));
+  mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>mobileMenu.classList.remove('open')));
+}
 
 // FAQ accordion
 document.querySelectorAll('.faq-item').forEach(item=>{
@@ -38,10 +40,12 @@ chips.forEach(chip=>{
 
 // Nav shrink/glass intensify on scroll
 const navEl = document.querySelector('.nav');
-window.addEventListener('scroll', ()=>{
-  if(window.scrollY > 40){ navEl.style.boxShadow = 'var(--shadow-lift)'; }
-  else { navEl.style.boxShadow = ''; }
-});
+if (navEl) {
+  window.addEventListener('scroll', ()=>{
+    if(window.scrollY > 40){ navEl.style.boxShadow = 'var(--shadow-lift)'; }
+    else { navEl.style.boxShadow = ''; }
+  });
+}
 
 // Catalog Data
 const catalog = [
