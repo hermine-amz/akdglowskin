@@ -151,13 +151,13 @@ function closeCart() {
 
 function sendWhatsApp() {
   if(cart.length === 0) return;
-  let text = "Bonjour, je souhaite commander :\\n\\n";
+  let text = "Bonjour AKD Glow Skin ! 👋\nJe souhaite passer une commande :\n\n";
   let total = 0;
   cart.forEach(item => {
-    text += `- ${item.qty}x ${item.name} (${item.price * item.qty} F)\\n`;
+    text += `- ${item.qty}x ${item.name} (${item.price * item.qty} F)\n`;
     total += item.price * item.qty;
   });
-  text += `\\nTotal: ${total} F\\n\\nMerci !`;
+  text += `\nTotal : ${total} F\n\nMerci !`;
   window.open(`https://wa.me/22968544800?text=${encodeURIComponent(text)}`, '_blank');
 }
 
@@ -181,6 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   updateCartBadge();
 });
+
 
 
 
