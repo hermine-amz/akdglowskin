@@ -1,4 +1,4 @@
-﻿:root{
+:root{
   /* ===== Token system — derived from the product world: cacao butter, shea, terracotta jars, gold rims ===== */
   --cacao-950:#1C1410;
   --cacao-900:#241A14;
@@ -257,7 +257,7 @@ ul{list-style:none;}
   background:var(--cacao-950); color:var(--shea-50);
   padding:16px 0; overflow:hidden; position:relative; z-index:2;
 }
-.marquee-track{display:flex; gap:60px; white-space:nowrap; animation:scrollX 28s linear infinite;}
+.marquee-track{display:flex; gap:60px; white-space:nowrap; animation:scrollX 15s linear infinite;}
 .marquee-track span{font-family:var(--font-display); font-style:italic; font-size:1.1rem; font-weight:500; opacity:.9; display:flex; align-items:center; gap:18px;}
 .marquee-track span::after{content:'✦'; opacity:.5; font-style:normal;}
 @keyframes scrollX{from{transform:translateX(0);} to{transform:translateX(-50%);}}
@@ -606,7 +606,7 @@ a:focus-visible, button:focus-visible{outline:2px solid var(--terracotta-500); o
 @media (max-width:600px){ .floating-btn { width:54px; height:54px; bottom:20px; right:20px; font-size:1.4rem; } }
 
 /* Cart Drawer */
-.cart-drawer { position:fixed; top:0; right:0; bottom:0; width:min(100%, 400px); background:var(--ivory); z-index:300; transform:translateX(100%); transition:transform .4s cubic-bezier(.22,1,.36,1); box-shadow:-20px 0 60px rgba(0,0,0,0.1); display:flex; flex-direction:column; }
+.cart-drawer { position:fixed; top:0; right:0; bottom:0; width:min(100%, 400px); background:rgba(255, 252, 248, 0.65); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px); border-left:1px solid rgba(255,255,255,0.4); z-index:300; transform:translateX(100%); transition:transform .4s cubic-bezier(.22,1,.36,1); box-shadow:-20px 0 60px rgba(0,0,0,0.1); display:flex; flex-direction:column; }
 .cart-drawer.open { transform:translateX(0); }
 .cart-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.4); z-index:299; opacity:0; pointer-events:none; transition:opacity .4s ease; backdrop-filter:blur(4px); }
 .cart-overlay.open { opacity:1; pointer-events:auto; }
