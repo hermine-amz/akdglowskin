@@ -35,6 +35,11 @@
       <h2>Tous nos soins et gammes</h2>
     </div>
 
+    <div class="search-bar-wrap" style="max-width:500px; margin:0 auto 30px; position:relative;">
+      <i class="ph ph-magnifying-glass" style="position:absolute; left:18px; top:50%; transform:translateY(-50%); color:var(--wood-600); font-size:1.2rem;"></i>
+      <input type="text" id="searchInput" placeholder="Rechercher une crème, un savon..." onkeyup="renderBoutique()" style="width:100%; padding:14px 20px 14px 48px; border-radius:100px; border:1px solid rgba(28,20,16,.15); background:var(--ivory); font-family:var(--font-body); font-size:.95rem; color:var(--cacao-950); outline:none; transition:border-color .3s; box-shadow:var(--shadow-soft);">
+    </div>
+
     <div class="filter-row" style="justify-content:center; margin-bottom:40px;">
       <button class="filter-chip active" onclick="renderBoutique('all')">Tous</button>
       <button class="filter-chip" onclick="renderBoutique('visage')">Visage</button>
@@ -59,14 +64,30 @@
 
 <script src="script.js"></script>
 <script>
-  function renderBoutique(filter) {
-    document.querySelectorAll('.filter-chip').forEach(c => {
-      c.classList.remove('active');
-      if (c.getAttribute('onclick').includes("'" + filter + "'")) c.classList.add('active');
-    });
+  let currentCat = 'all';
+
+  function renderBoutique(filterCat) {
+    if (typeof filterCat === 'string') {
+      currentCat = filterCat;
+      document.querySelectorAll('.filter-chip').forEach(c => {
+        c.classList.remove('active');
+        if (c.getAttribute('onclick').includes("'" + filterCat + "'")) c.classList.add('active');
+      });
+    }
+
     const grid = document.getElementById('boutiqueGrid');
+    const searchQuery = document.getElementById('searchInput').value.toLowerCase();
     grid.innerHTML = '';
-    const filtered = filter === 'all' ? catalog : catalog.filter(p => p.cat === filter);
+    
+    let filtered = currentCat === 'all' ? catalog : catalog.filter(p => p.cat === currentCat);
+    if (searchQuery) {
+      filtered = filtered.filter(p => p.name.toLowerCase().includes(searchQuery) || p.desc.toLowerCase().includes(searchQuery));
+    }
+
+    if (filtered.length === 0) {
+      grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:40px 0; color:var(--wood-600);">Aucun produit trouvé.</div>';
+      return;
+    }
     
     filtered.forEach(p => {
       const isFav = favs.includes(p.id);
