@@ -93,7 +93,7 @@ function toggleFav(id) {
   else favs.push(id);
   saveFavs();
   // Update UI if on boutique
-  const btn = document.querySelector(`.fav-btn[data-id="\${id}"]`);
+  const btn = document.querySelector(`.fav-btn[data-id="${id}"]`);
   if(btn) {
     if(favs.includes(id)) { btn.classList.add('active'); btn.innerHTML = '<i class="ph-fill ph-heart"></i>'; }
     else { btn.classList.remove('active'); btn.innerHTML = '<i class="ph ph-heart"></i>'; }
@@ -116,20 +116,20 @@ function renderCart() {
   let total = 0;
   cart.forEach(item => {
     total += item.price * item.qty;
-    container.innerHTML += \`
+    container.innerHTML += `
       <div class="cart-item">
-        <img src="\${item.img}" alt="\${item.name}" loading="lazy">
+        <img src="${item.img}" alt="${item.name}" loading="lazy">
         <div class="cart-item-info">
-          <div class="cart-item-title">\${item.name}</div>
-          <div class="cart-item-price">\${item.price} F</div>
+          <div class="cart-item-title">${item.name}</div>
+          <div class="cart-item-price">${item.price} F</div>
         </div>
         <div class="cart-item-qty">
-          <button onclick="updateQty('\${item.id}', -1)">-</button>
-          <span>\${item.qty}</span>
-          <button onclick="updateQty('\${item.id}', 1)">+</button>
+          <button onclick="updateQty('${item.id}', -1)">-</button>
+          <span>${item.qty}</span>
+          <button onclick="updateQty('${item.id}', 1)">+</button>
         </div>
       </div>
-    \`;
+    `;
   });
   if(cart.length === 0) container.innerHTML = '<p style="color:var(--wood-600);text-align:center;">Votre panier est vide.</p>';
   if(totalEl) totalEl.textContent = total + ' F';
@@ -150,17 +150,17 @@ function sendWhatsApp() {
   let text = "Bonjour, je souhaite commander :\\n\\n";
   let total = 0;
   cart.forEach(item => {
-    text += \`- \${item.qty}x \${item.name} (\${item.price * item.qty} F)\\n\`;
+    text += `- ${item.qty}x ${item.name} (${item.price * item.qty} F)\\n`;
     total += item.price * item.qty;
   });
-  text += \`\\nTotal: \${total} F\\n\\nMerci !\`;
-  window.open(\`https://wa.me/22968544800?text=\${encodeURIComponent(text)}\`, '_blank');
+  text += `\\nTotal: ${total} F\\n\\nMerci !`;
+  window.open(`https://wa.me/22968544800?text=${encodeURIComponent(text)}`, '_blank');
 }
 
 // Initialize Cart Drawer HTML if not exists
 document.addEventListener('DOMContentLoaded', () => {
   if(!document.getElementById('cartDrawer')) {
-    document.body.insertAdjacentHTML('beforeend', \`
+    document.body.insertAdjacentHTML('beforeend', `
       <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
       <div class="cart-drawer" id="cartDrawer">
         <div class="cart-header">
@@ -173,9 +173,10 @@ document.addEventListener('DOMContentLoaded', () => {
           <button class="btn-whatsapp" onclick="sendWhatsApp()"><i class="ph ph-whatsapp-logo"></i> Commander sur WhatsApp</button>
         </div>
       </div>
-    \`);
+    `);
   }
   updateCartBadge();
 });
+
 
 
