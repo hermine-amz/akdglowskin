@@ -1,4 +1,4 @@
-﻿// Reveal on scroll
+// Reveal on scroll
 const revealEls = document.querySelectorAll('.reveal');
 const io = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
@@ -118,7 +118,7 @@ function renderCart() {
     total += item.price * item.qty;
     container.innerHTML += \`
       <div class="cart-item">
-        <img src="\${item.img}" alt="\${item.name}">
+        <img src="\${item.img}" alt="\${item.name}" loading="lazy">
         <div class="cart-item-info">
           <div class="cart-item-title">\${item.name}</div>
           <div class="cart-item-price">\${item.price} F</div>
@@ -177,4 +177,5 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   updateCartBadge();
 });
+
 
