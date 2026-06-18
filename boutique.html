@@ -74,7 +74,7 @@
             <i class="${isFav ? 'ph-fill' : 'ph'} ph-heart"></i>
           </button>
           <a href="produit.html?id=${p.id}" class="img-wrap">
-            <img src="${p.img}" alt="${p.name}">
+            <img src="${p.img}" alt="${p.name}" loading="lazy">
           </a>
           <div class="body">
             <a href="produit.html?id=${p.id}"><h3>${p.name}</h3></a>
@@ -93,3 +93,4 @@
 </script>
 </body>
 </html>
+
