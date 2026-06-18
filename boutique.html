@@ -60,8 +60,10 @@
 <script src="script.js"></script>
 <script>
   function renderBoutique(filter) {
-    document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
-    event.target.classList.add('active');
+    document.querySelectorAll('.filter-chip').forEach(c => {
+      c.classList.remove('active');
+      if (c.getAttribute('onclick').includes("'" + filter + "'")) c.classList.add('active');
+    });
     const grid = document.getElementById('boutiqueGrid');
     grid.innerHTML = '';
     const filtered = filter === 'all' ? catalog : catalog.filter(p => p.cat === filter);
